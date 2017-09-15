@@ -1,32 +1,26 @@
 #include "ros/ros.h"
 #include "ros/console.h"
-#include "vesc_usb.h"
+#include "vesc_driver/vesc_usb.h"
 #include "std_msgs/String.h"
 
-
-void vescCommandCallback(const std_msgs::String::ConstPtr & msg)
-{
-  ROS_WARN_STREAM("Received vesc_cmd message: " << *msg);
-}
-
-// void vescFeedbackPublish(const )
+#include "vesc_driver/vesc_ros.h"
 
 
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "driver_node");
-  ros::NodeHandle nh_;
+  ros::NodeHandle nh;
 
-  // initialize the usb communication
-  vesc::initComm();
+  vesc::RosHandler ros_handler("thing1", "thing2", &nh);
 
-  // setup ROS callbacks for writing to the VESC
-  ros::Subscriber cmd_sub_ = nh_.subscribe("vesc_cmd", 1, vescCommandCallback);
+  // initialize vesc communication
+  vesc::initComm(vesc::processFeedback);
 
   ROS_WARN("Listening for VESC commands...");
   while(ros::ok())
   {
-    ros::Duration(1.0).sleep();
+    if (vesc::feedbackMessagesPending())
+      ros_handler.publishFeedback();
     ros::spinOnce();
   }
 

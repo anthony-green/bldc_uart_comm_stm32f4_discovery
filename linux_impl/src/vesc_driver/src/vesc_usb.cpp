@@ -16,11 +16,15 @@ namespace vesc
 // Settings
 #define PACKET_HANDLER      0
 #define MAX_BYTES_PER_READ  5
-#define PLATFORM_IS_LINUX (!defined(TM4C123GH6PM) && !defined(TM4C123GH6PZ) && !defined(TM4C123GH6PGE))
 
 #if PLATFORM_IS_LINUX
 static serial::Serial ser;
 #endif
+
+static void serialSendPacket(uint8_t *data, unsigned int length)
+{
+  ser.write(data, (size_t)length);
+}
 
 /**
  * Use the packet handler to send packets. This will ultimately end up calling
@@ -30,7 +34,7 @@ static serial::Serial ser;
  *
  * below.
  */
-void packetHandlerSendPacket(uint8_t *data, unsigned int length)
+void sendPacket(uint8_t *data, unsigned int length)
 {
   packet_send_packet(data, length, PACKET_HANDLER);
 }
@@ -75,16 +79,13 @@ int initComm(feedback_callback_t feedback_cb)
   
   // pass function for sending whole packet as well as function
   // for receiving whole packet to the packet.h
-  packet_init(sendPacket, bldc_interface_process_packet, PACKET_HANDLER);
+  packet_init(serialSendPacket, bldc_interface_process_packet, PACKET_HANDLER);
 
-  bldc_interface_init(packetHandlerSendPacket);
+  bldc_interface_init(sendPacket);
   bldc_interface_set_rx_value_func(feedback_cb);
 }
 
-void sendPacket(uint8_t *data, unsigned int length)
-{
-  ser.write(data, (size_t)length);
-}
+
 
 void byteReceived(uint8_t b)
 {
@@ -107,11 +108,6 @@ int processBytes()
       byteReceived(buf[i]);
   }
   return bytes_read;
-}
-
-void processFeedback(mc_values *values)
-{
-
 }
 
 } // vesc

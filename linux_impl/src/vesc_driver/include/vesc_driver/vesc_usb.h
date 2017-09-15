@@ -42,12 +42,6 @@ void onMillisTick();
  */
 int processBytes();
 
-
-/**
- * Process feedback from the motor controller. If feedbackCallback
- */
-void processFeedback(mc_values *values);
-
 } // vesc
 
 #endif // VESC_USB_H_
