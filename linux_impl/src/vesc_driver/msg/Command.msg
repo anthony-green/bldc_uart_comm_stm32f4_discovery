@@ -1,1 +1,1 @@
-float target_cmd  # motor current, in amps
+float32 target_cmd  # motor current, in amps
