@@ -1,0 +1,1 @@
+float target_cmd  # motor current, in amps
