@@ -129,7 +129,15 @@ include_directories(
 # add_dependencies(vesc_driver ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-add_executable(vesc_driver_node src/main.cpp)
+add_executable(
+	vesc_driver_node
+	src/main.cpp
+	src/bldc_interface.c
+	src/buffer.c
+	src/crc.c
+	src/packet.c
+	src/vesc_usb.cpp
+)
 target_link_libraries(vesc_driver_node ${catkin_LIBRARIES})
 
 ## Add cmake target dependencies of the executable
