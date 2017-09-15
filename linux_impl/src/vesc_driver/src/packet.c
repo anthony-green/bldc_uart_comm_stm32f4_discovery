@@ -23,8 +23,8 @@
  */
 
 #include <string.h>
-#include "vesc_driver/packet.h"
-#include "vesc_driver/crc.h"
+#include "packet.h"
+#include "crc.h"
 
 typedef struct {
 	volatile unsigned char rx_state;

@@ -1,8 +1,8 @@
 #include "ros/ros.h"
-// #include "vesc_driver/datatypes.h"
-// #include "vesc_driver/bldc_interface.h"
-// #include "vesc_driver/packet.h"
-// #include "vesc_driver/crc.h"
+#include "datatypes.h"
+#include "bldc_interface.h"
+#include "packet.h"
+#include "crc.h"
 
 
 int main(int argc, char** argv)

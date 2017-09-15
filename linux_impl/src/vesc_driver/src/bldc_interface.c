@@ -23,8 +23,8 @@
  *
  */
 
-#include "vesc_driver/bldc_interface.h"
-#include "vesc_driver/buffer.h"
+#include "bldc_interface.h"
+#include "buffer.h"
 #include <string.h>
 
 // Private variables

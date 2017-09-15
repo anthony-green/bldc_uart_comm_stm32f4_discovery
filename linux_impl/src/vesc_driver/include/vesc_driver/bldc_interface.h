@@ -18,7 +18,7 @@
 #ifndef BLDC_INTERFACE_H_
 #define BLDC_INTERFACE_H_
 
-#include "vesc_driver/datatypes.h"
+#include "datatypes.h"
 
 // interface functions
 void bldc_interface_init(void(*func)(unsigned char *data, unsigned int len));
