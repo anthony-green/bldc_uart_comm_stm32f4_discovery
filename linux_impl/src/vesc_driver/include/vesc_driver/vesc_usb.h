@@ -11,6 +11,7 @@ namespace vesc
 {
 
 typedef void(*feedback_callback_t)(mc_values*);
+
 /**
  * Send a packet over USB
  */
@@ -29,13 +30,11 @@ int initComm(feedback_callback_t feedback_cb);
  */
 void byteReceived(uint8_t b);
 
-
 /**
  * Call this function every millisecond to reset packet state machine in case
  * of potential timeouts.
  */
 void onMillisTick();
-
 
 /**
  * Process all newly received bytes. Return number of bytes processed.

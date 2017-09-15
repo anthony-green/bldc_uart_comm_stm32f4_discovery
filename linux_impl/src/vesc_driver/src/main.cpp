@@ -5,6 +5,11 @@
 
 #include "vesc_driver/vesc_ros.h"
 
+void onTimerCallback(const ros::TimerEvent &)
+{
+  vesc::onMillisTick();
+}
+
 
 int main(int argc, char** argv)
 {
@@ -17,8 +22,10 @@ int main(int argc, char** argv)
   vesc::initComm(vesc::processFeedback);
 
   ROS_WARN("Listening for VESC commands...");
+  nh.createTimer(ros::Duration(0.001), onTimerCallback);
   while(ros::ok())
   {
+    vesc::processBytes();
     if (vesc::feedbackMessagesPending())
       ros_handler.publishFeedback();
     ros::spinOnce();

@@ -27,19 +27,6 @@ static void serialSendPacket(uint8_t *data, unsigned int length)
 }
 
 /**
- * Use the packet handler to send packets. This will ultimately end up calling
- * the function that is passed as the *sendFunc in the call to:
- *
- *    packet_init()
- *
- * below.
- */
-void sendPacket(uint8_t *data, unsigned int length)
-{
-  packet_send_packet(data, length, PACKET_HANDLER);
-}
-
-/**
  * return -2 -> IOException
  * return -1 -> other error
  * return  0 -> all good
@@ -70,6 +57,19 @@ static size_t readBytes(uint8_t * dest, unsigned int max_bytes)
 #if PLATFORM_IS_LINUX
   return ser.read(dest, max_bytes);
 #endif
+}
+
+/**
+ * Use the packet handler to send packets. This will ultimately end up calling
+ * the function that is passed as the *sendFunc in the call to:
+ *
+ *    packet_init()
+ *
+ * below.
+ */
+void sendPacket(uint8_t *data, unsigned int length)
+{
+  packet_send_packet(data, length, PACKET_HANDLER);
 }
 
 
