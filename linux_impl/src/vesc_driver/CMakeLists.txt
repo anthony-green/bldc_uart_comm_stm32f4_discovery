@@ -116,7 +116,7 @@ catkin_package(
 # include_directories(include)
 include_directories(
   ${catkin_INCLUDE_DIRS}
-  include/vesc_driver
+  include
 )
 
 ## Declare a C++ library
@@ -138,6 +138,7 @@ add_executable(
 	src/crc.c
 	src/packet.c
 	src/vesc_usb.cpp
+  src/vesc_ros.cpp
 )
 target_link_libraries(vesc_driver_node ${catkin_LIBRARIES})
 

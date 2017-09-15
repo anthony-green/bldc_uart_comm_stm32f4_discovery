@@ -5,13 +5,12 @@
 #define VESC_USB_H_
 
 #include "inttypes.h"
-#include "datatypes.h"
+#include "vesc_driver/datatypes.h"
 
 namespace vesc
 {
 
 typedef void(*feedback_callback_t)(mc_values*);
-
 /**
  * Send a packet over USB
  */

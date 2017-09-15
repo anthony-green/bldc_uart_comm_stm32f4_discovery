@@ -22,10 +22,10 @@
  *      Author: benjamin
  */
 
-#include "bldc_interface_uart.h"
-#include "ch.h"
+#include "vesc_driver/bldc_interface_uart.h"
+#include "vesc_driver/ch.h"
 // #include "hal.h"
-#include "bldc_interface.h"
+#include "vesc_driver/bldc_interface.h"
 
 // Settings
 #define PACKET_HANDLER			0

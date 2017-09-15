@@ -1,11 +1,12 @@
-#include "vesc_usb.h"
+#include "vesc_driver/vesc_usb.h"
 
 #include "serial/serial.h"
 
 extern "C"
 {
-  #include "bldc_interface.h"
-  #include "packet.h"
+  #include "vesc_driver/platform_flags.h"
+  #include "vesc_driver/bldc_interface.h"
+  #include "vesc_driver/packet.h"
 }
 
 
