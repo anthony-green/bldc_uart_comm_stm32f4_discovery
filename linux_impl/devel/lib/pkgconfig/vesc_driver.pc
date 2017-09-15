@@ -1,0 +1,8 @@
+prefix=/home/agreen/bldc_uart_comm_stm32f4_discovery/linux_impl/devel
+
+Name: vesc_driver
+Description: Description of vesc_driver
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/agreen/bldc_uart_comm_stm32f4_discovery/linux_impl/devel/lib 
+Requires: 

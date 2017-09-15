@@ -1,0 +1,2 @@
+vesc_driver
+-DCATKIN_DEVEL_PREFIX=/home/agreen/bldc_uart_comm_stm32f4_discovery/linux_impl/devel -DCMAKE_INSTALL_PREFIX=/home/agreen/bldc_uart_comm_stm32f4_discovery/linux_impl/install -G Unix Makefiles
